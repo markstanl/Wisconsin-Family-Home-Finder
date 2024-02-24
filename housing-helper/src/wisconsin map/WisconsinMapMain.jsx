@@ -10,18 +10,21 @@ const WisconsinMapMain = () => {
   });
 
   return (
-    <div>
-      <ReactMapGL
-        {...viewport}
-        width="50%"
-        height="100%"
-        mapStyle="mapbox://styles/ignasd/clt0fp2za00ee01qf2xxfgflu"
-        mapboxAccessToken={
-          "pk.eyJ1IjoiaWduYXNkIiwiYSI6ImNsdDBkb3dxczB4em4yb21uZ2hmdDZ3aXoifQ.pbbOUb_r8sNLbwrJPNmlkw"
-        }
-        onViewportChange={setViewport}
-      />
-    </div>
+    <>
+      <div className="h-16 w-full" />
+      <div className="h-screen w-full">
+        <ReactMapGL
+          {...viewport}
+          width="50%"
+          height="100vh"
+          mapStyle="mapbox://styles/ignasd/clt0fp2za00ee01qf2xxfgflu"
+          mapboxAccessToken={
+            "pk.eyJ1IjoiaWduYXNkIiwiYSI6ImNsdDBkb3dxczB4em4yb21uZ2hmdDZ3aXoifQ.pbbOUb_r8sNLbwrJPNmlkw"
+          }
+          onViewportChange={setViewport}
+        />
+      </div>
+    </>
   );
 };
 
