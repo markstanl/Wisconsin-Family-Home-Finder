@@ -1,0 +1,65 @@
+#set working directory first
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE,
+                      warning = FALSE, error = TRUE, fig.height = 3)
+library(tidyverse)
+library(lubridate)
+library(kableExtra)
+library(broman)
+library(scales)
+library(modelr)
+theme_set(theme_minimal())
+```
+
+```{r}
+education = read_csv("education.csv")
+crime = read_csv("crime.csv")
+employment = read_csv("employment.csv")
+homeprice = read_csv("homeprice.csv")
+```
+
+```{r}
+education$`Population`= education$`City&Population`
+education$'City' = education$'City&Population'
+education = education %>% 
+  mutate(City = substr(education$City, 1, str_locate(education$City, ", WI / ") - 1)) %>% 
+  mutate(Population = substr(education$Population, str_locate(education$Population, " / ") + 3, nchar(education$Population))) %>% 
+  select(`Average Education Index`, `Population`, `City`)
+education$Population = as.numeric(gsub(",", "", education$Population))
+```
+
+```{r}
+crime$`Population`= crime$`City&Population`
+crime$'City' = crime$'City&Population'
+crime = crime %>% 
+  mutate(City = substr(crime$City, 1, str_locate(crime$City, ", WI / ") - 1)) %>% 
+  select('Crime Index', 'City')
+```
+
+```{r}
+homeprice$`Population`= homeprice$`City&Population`
+homeprice$'City' = homeprice$'City&Population'
+homeprice = homeprice %>% 
+  mutate(City = substr(homeprice$City, 1, str_locate(homeprice$City, ", WI / ") - 1)) %>% 
+  select('House Median Value', 'City')
+```
+
+```{r}
+employment$`Population`= employment$`City&Population`
+employment$'City' = employment$'City&Population'
+employment = employment %>% 
+  mutate(City = substr(employment$City, 1, str_locate(employment$City, ", WI / ") - 1)) %>%   
+	rename('Age 16 or Older Population Employed Percentage' = 'Age 16 or Older Population Percentage') %>% 
+	select('Age 16 or Older Population Employed Percentage', 'City')
+```
+
+
+
+```{r}
+city_education_crime_employment_homeprice = left_join(education, crime, "City")
+city_education_crime_employment_homeprice = left_join(city_education_and_crime, employment, "City")
+city_education_crime_employment_homeprice = left_join(city_education_and_crime, homeprice, "City")
+city_education_crime_employment_homeprice = drop_na(city_education_and_crime) 
+city_education_crime_employment_homeprice = city_education_and_crime[,c(3, 2, 1, 4, 5, 6)]
+write_csv(city_education_crime_employment_homeprice, "city_education_crime_employment_homeprice.csv")
+```
