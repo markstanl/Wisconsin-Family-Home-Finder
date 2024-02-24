@@ -56,10 +56,10 @@ employment = employment %>%
 
 
 ```{r}
-city_education_crime_employment_homeprice = left_join(education, crime, "City")
-city_education_crime_employment_homeprice = left_join(city_education_and_crime, employment, "City")
-city_education_crime_employment_homeprice = left_join(city_education_and_crime, homeprice, "City")
-city_education_crime_employment_homeprice = drop_na(city_education_and_crime) 
-city_education_crime_employment_homeprice = city_education_and_crime[,c(3, 2, 1, 4, 5, 6)]
-write_csv(city_education_crime_employment_homeprice, "city_education_crime_employment_homeprice.csv")
+final = left_join(education, crime, "City")
+final = left_join(final, employment, "City")
+final = left_join(final, homeprice, "City")
+final = drop_na(final) 
+final = final[,c(3, 2, 1, 4, 5, 6)]
+write_csv(final, "city_education_crime_employment_homeprice.csv")
 ```
