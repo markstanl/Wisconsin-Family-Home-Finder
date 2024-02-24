@@ -3,6 +3,12 @@ import ReactMapGL, { NavigationControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const WisconsinMapMain = () => {
+
+  // Add the locations, see if can add hover effect
+  // Limit the map around wisconsin,
+  // Change map theme to be less ugly
+  
+  
   return (
     <div>
       <div className="h-14 w-full" />
