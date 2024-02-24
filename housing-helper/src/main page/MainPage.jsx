@@ -12,7 +12,7 @@ const MainPage = () => {
         {pressed && <SideMenu />}
         <SideMenuButton setPressed={setPressed} pressed={pressed} />
       </div>
-      <WisconsinMapMain />
+      {false && <WisconsinMapMain />}
     </div>
   );
 };
