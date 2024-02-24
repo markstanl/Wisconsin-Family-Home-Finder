@@ -9,9 +9,11 @@ const WisconsinMapMain = () => {
     zoom: 6,
   });
 
+  console.log(viewport);
+
   return (
     <>
-      <div className="h-16 w-full" />
+      <div className="h-14 w-full" />
       <div className="h-screen w-full">
         <ReactMapGL
           {...viewport}
@@ -21,7 +23,9 @@ const WisconsinMapMain = () => {
           mapboxAccessToken={
             "pk.eyJ1IjoiaWduYXNkIiwiYSI6ImNsdDBkb3dxczB4em4yb21uZ2hmdDZ3aXoifQ.pbbOUb_r8sNLbwrJPNmlkw"
           }
-          onViewportChange={setViewport}
+          onViewportChange={(viewport) => {
+            setViewport(viewport);
+          }}
         />
       </div>
     </>
