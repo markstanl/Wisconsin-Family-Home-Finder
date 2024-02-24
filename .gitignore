@@ -1,2 +1,7 @@
-.idea/misc.xml
-.idea/workspace.xml
+.vscode/
+.vs/
+.idea/
+
+*.vscode
+*.vs
+*.idea
