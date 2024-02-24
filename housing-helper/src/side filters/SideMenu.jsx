@@ -8,7 +8,7 @@ const SideMenu = () => {
       <div>
         <h1 className="primary-accent-text-gradient">Filter Options</h1>
       </div>
-      <OptionButton />
+      <OptionButton options={[1, 2, 3]} />
     </div>
   );
 };
