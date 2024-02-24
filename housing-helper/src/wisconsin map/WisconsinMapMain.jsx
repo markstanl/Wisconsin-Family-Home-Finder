@@ -21,12 +21,11 @@ const WisconsinMapMain = () => {
           }}
           width="50vw"
           height="100vh"
-          mapStyle="mapbox://styles/ignasd/clt0fp2za00ee01qf2xxfgflu"
+          mapStyle="mapbox://styles/ignasd/clt0ndnh600sj01qs6v5n3ug8"
           mapboxAccessToken={
             "pk.eyJ1IjoiaWduYXNkIiwiYSI6ImNsdDBkb3dxczB4em4yb21uZ2hmdDZ3aXoifQ.pbbOUb_r8sNLbwrJPNmlkw"
           }
-          //onChangeViewport={setViewport}
-          //dragPan={true}
+         
         ></ReactMapGL>
       </div>
     </div>
