@@ -1,0 +1,49 @@
+#set working directory first
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE,
+                      warning = FALSE, error = TRUE, fig.height = 3)
+library(tidyverse)
+library(lubridate)
+library(kableExtra)
+library(broman)
+library(scales)
+library(modelr)
+theme_set(theme_minimal())
+```
+
+```{r}
+education = read_csv("education.csv")
+crime = read_csv("crime.csv")
+```
+
+```{r}
+education$`Population`= education$`City&Population`
+education$'City' = education$'City&Population'
+education = education %>% 
+    mutate(City = substr(education$City, 1, str_locate(education$City, ", WI / ") - 1)) %>% 
+  mutate(Population = substr(education$Population, str_locate(education$Population, " / ") + 3, nchar(education$Population))) %>% 
+rename(`Average Education Index Rank` = Rank) %>% 
+  select(`Average Education Index Rank`, `Average Education Index`, `Population`, `City`)
+education$Population = as.numeric(gsub(",", "", education$Population))
+```
+
+```{r}
+crime$`Population`= crime$`City&Population`
+crime$'City' = crime$'City&Population'
+crime = crime %>% 
+    mutate(City = substr(crime$City, 1, str_locate(crime$City, ", WI / ") - 1)) %>% 
+  mutate(Population = substr(crime$Population, str_locate(crime$Population, " / ") + 3, nchar(crime$Population))) %>% 
+rename(`Crime Index Rank` = Rank) %>% 
+  select(`Crime Index Rank`, `Crime Index`, `Population`, `City`)
+crime$Population = as.numeric(gsub(",", "", crime$Population))
+```
+
+```{r}
+city_education_and_crime = left_join(education, crime, "City")
+city_education_and_crime = city_education_and_crime %>% 
+  drop_na() %>% 
+  rename(Population = Population.x) %>% 
+  select(-Population.y)
+city_education_and_crime = city_education_and_crime[,c(4, 2, 6, 3, 1, 5)]
+write_csv(city_education_and_crime, "city_education_and_crime.csv")
+```
