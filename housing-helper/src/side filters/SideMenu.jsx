@@ -7,10 +7,16 @@ const SideMenu = ({ rankingArray, setRankingArray }) => {
   const [educationRanking, setEducationRanking] = useState(null);
   const [incomeRanking, setIncomeRanking] = useState(null);
   const [crimeRanking, setCrimeRanking] = useState(null);
+  const [priceValue, setPriceValue] = useState(null);
 
   useEffect(() => {
-    setRankingArray([educationRanking, incomeRanking, crimeRanking]);
-  }, [educationRanking, incomeRanking, crimeRanking]);
+    setRankingArray([
+      educationRanking,
+      incomeRanking,
+      crimeRanking,
+      priceValue,
+    ]);
+  }, [educationRanking, incomeRanking, crimeRanking, priceValue]);
 
   return (
     <div className="w-[20vw] h-full bg-backgroundLight flex flex-col items-center">
@@ -46,7 +52,7 @@ const SideMenu = ({ rankingArray, setRankingArray }) => {
         </div>
         <div className="flex flex-col items-center">
           <p className="text-primary font-bold text-xl">Input Budget</p>
-          <PriceTextBox />
+          <PriceTextBox setPriceValue={setPriceValue} />
         </div>
       </div>
       <Submit rankingArray={rankingArray} />
