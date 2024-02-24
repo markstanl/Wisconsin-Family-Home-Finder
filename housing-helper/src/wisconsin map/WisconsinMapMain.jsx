@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import mapboxgl from "mapbox-gl";
 import ReactMapGL from "react-map-gl";
 
 const WisconsinMapMain = () => {
