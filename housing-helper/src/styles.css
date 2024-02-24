@@ -3,3 +3,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.header {
+    @apply flex justify-between items-center sm:px-16 px-8 py-4 w-full mx-auto absolute top-0 z-10 right-0 left-0;
+  }
