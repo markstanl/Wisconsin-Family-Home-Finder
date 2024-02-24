@@ -1,0 +1,9 @@
+venv/
+.vscode/
+.vs/
+.idea/
+
+
+*.vscode
+*.vs
+*.idea
