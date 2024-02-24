@@ -17,5 +17,5 @@ h1{
 }
 
 .button-container{
-  @apply  border-2 border-accent rounded-lg flex flex-row justify-center bg-accent;
+  @apply  border-2 border-accent rounded-lg flex flex-row justify-center bg-accent cursor-pointer;
 }

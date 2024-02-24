@@ -13,6 +13,8 @@ const OptionButton = ({ options, setPressed }) => {
   const regStyles = [
     `h-full w-1/3 ${bgcolor} flex justify-center items-center text-background`,
     `h-full w-1/3 ${bgcolor} border-l-2 border-r-2 border-accent flex justify-center items-center text-background`,
+    `h-full w-1/3 ${bgcolor} border-r-2 border-accent flex justify-center items-center text-background`,
+    `h-full w-1/3 ${bgcolor} border-r-2 border-accent flex justify-center items-center text-background`,
     `h-full w-1/3 ${bgcolor}  flex justify-center items-center text-background`,
   ];
 
@@ -21,6 +23,8 @@ const OptionButton = ({ options, setPressed }) => {
   const selectedStyles = [
     `h-full w-1/3 ${selectedbgcolor} flex justify-center items-center text-white`,
     `h-full w-1/3 ${selectedbgcolor} border-l-2 border-r-2 border-accent flex justify-center items-center text-white`,
+    `h-full w-1/3 ${selectedbgcolor} border-r-2 border-accent flex justify-center items-center text-white`,
+    `h-full w-1/3 ${selectedbgcolor} border-r-2 border-accent flex justify-center items-center text-white`,
     `h-full w-1/3 ${selectedbgcolor} flex justify-center items-center text-white`,
   ];
 
