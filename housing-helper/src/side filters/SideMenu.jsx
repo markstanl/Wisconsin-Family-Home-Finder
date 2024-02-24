@@ -5,7 +5,7 @@ const SideMenu = () => {
   const [educationRanking, setEducationRanking] = useState(null);
 
   return (
-    <div className="w-1/5 h-full bg-backgroundLight flex flex-col items-center">
+    <div className="w-[20vw] h-full bg-backgroundLight flex flex-col items-center">
       <div className="w-full h-16 flex" />
       <div className="text-center">
         <h1 className="primary-accent-text-gradient">Filter Options</h1>

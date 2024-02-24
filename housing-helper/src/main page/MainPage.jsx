@@ -8,11 +8,8 @@ const MainPage = () => {
 
   return (
     <div className="w-full h-full">
-      <WisconsinMapMain />
-      <div className="flex flex-row h-full w-full absolute top-0">
-        {pressed && <SideMenu />}
-        <SideMenuButton setPressed={setPressed} pressed={pressed} />
-      </div>
+      {<WisconsinMapMain />}
+      
     </div>
   );
 };
