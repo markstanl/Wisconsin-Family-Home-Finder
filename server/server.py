@@ -2,7 +2,6 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-
 def generate_arrays():
     quality = []
     safety = []
