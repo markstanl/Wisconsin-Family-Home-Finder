@@ -1,7 +1,7 @@
 import React from "react";
 
 const SideMenu = () => {
-  return <div>SideMenu</div>;
+  return <div className="w-2/5 h-full bg-secondary"></div>;
 };
 
 export default SideMenu;
