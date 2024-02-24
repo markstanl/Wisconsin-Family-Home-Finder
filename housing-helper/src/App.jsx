@@ -1,5 +1,4 @@
 import { useState } from "react";
-import 'mapbox-gl/dist/mapbox-gl.css';
 import "./styles.css";
 
 import WebRouter from "./WebRouter";
