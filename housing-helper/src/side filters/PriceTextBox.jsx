@@ -1,7 +1,7 @@
 import React from "react";
 
-const SalaryTextBox = () => {
-  return <div>SalaryTextBox</div>;
+const PriceTextBox = () => {
+  return <div>PriceTextBox</div>;
 };
 
-export default SalaryTextBox;
+export default PriceTextBox;
