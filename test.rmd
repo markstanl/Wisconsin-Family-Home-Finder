@@ -64,16 +64,17 @@ final = left_join(final, homeprice, "City")
 final = drop_na(final) 
 final = final[,c(3, 2, 1, 4, 5, 6)]
 max_education_index = max(final$`Average Education Index`)
-min_crime_index = min(final$`Crime Index`)
-
 final = final %>% 
   filter(Population > 1000) %>% 
   rename(city = City, population = Population, average_education_index = "Average Education Index", crime_index = "Crime Index", sixteen_plus_employed_percentage = "Age 16 or Older Population Employed Percentage", house_median_value = "House Median Value") %>% 
-  mutate(house_median_value = str_sub(str_replace(house_median_value, ",", ""), 2, -1)) %>% 
-  mutate(sixteen_plus_employed_percentage = str_replace(sixteen_plus_employed_percentage, "%", "")) %>% 
-  mutate(edu_index_norm = average_education_index / max_education_index) 
+  mutate(house_median_value = str_sub(str_replace(house_median_value, ",", ""), 2, -1),
+         sixteen_plus_employed_percentage = str_replace(sixteen_plus_employed_percentage, "%", ""),
+         edu_index_norm = average_education_index / max_education_index)
 final$house_median_value = as.numeric(final$house_median_value)
 final$sixteen_plus_employed_percentage = as.numeric(final$sixteen_plus_employed_percentage)
+max_employment_percentage = max(final$sixteen_plus_employed_percentage)
+final = final %>% 
+  mutate(employed_percentage_norm = sixteen_plus_employed_percentage / max_employment_percentage)
 ggplot(final, aes(x = crime_index)) +
   geom_density()
 ```
