@@ -80,5 +80,6 @@ ggplot(final, aes(x = crime_index)) +
 ```
 
 ```{r}
+final$'helo' = c(1,264)
 write_csv(final, "city_education_crime_employment_homeprice.csv")
 ```
