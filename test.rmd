@@ -76,10 +76,14 @@ max_employment_percentage = max(final$sixteen_plus_employed_percentage)
 final = final %>% 
   mutate(employed_percentage_norm = sixteen_plus_employed_percentage / max_employment_percentage)
 ggplot(final, aes(x = crime_index)) +
-  geom_density()
+  geom_density() +
+  geom_vline(aes(xintercept=700), color="red", linetype = "dashed")
 ```
 
 ```{r}
-final$'helo' = c(1,264)
+final$'' = 1:264
+final = final[,c(9, 1, 2, 3, 4, 5, 6, 7, 8)]
 write_csv(final, "city_education_crime_employment_homeprice.csv")
+print(final$city)
+write(final$city, "city_list.txt")
 ```
