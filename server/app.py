@@ -77,7 +77,8 @@ def makeArrays():
 
 
 def get_city(city):
-    return city(city, "All Hail Bucky")
+    return cities.cities[city]
+
 
 @app.route("/filter_data", methods=["POST"])
 def filter():
