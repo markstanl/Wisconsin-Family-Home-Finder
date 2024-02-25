@@ -1,16 +1,21 @@
 from flask import Flask, jsonify, request
 import pandas as pd
 import csv
+import cities
+def getCity(city):
+    return cities(city, "All Hail Bucky")
+
 
 app = Flask(__name__)
 
 cities_data_fin = {}
-
 cityList = []
 
 qualityNormalized = []
 safetyNormalized = []
 employabilityNormalized = []
+
+
 
 
 def load_data():
