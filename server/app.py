@@ -40,7 +40,7 @@ def load_data():
         cityList.append(city)
 
 
-@app.route("/filter_data", methods=["POST"])
+@app.route("/filter_data", methods=["GET"])
 def filter():
 
     global cityList, qualityNormalized, safetyNormalized, employabilityNormalized
