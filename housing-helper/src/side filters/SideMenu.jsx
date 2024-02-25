@@ -3,7 +3,12 @@ import OptionButton from "./OptionButton";
 import Submit from "./Submit";
 import PriceTextBox from "./PriceTextBox";
 
-const SideMenu = ({ rankingArray, setRankingArray }) => {
+const SideMenu = ({
+  rankingArray,
+  setRankingArray,
+  setFinalCityName,
+  setTryAgain,
+}) => {
   const [educationRanking, setEducationRanking] = useState(null);
   const [incomeRanking, setIncomeRanking] = useState(null);
   const [crimeRanking, setCrimeRanking] = useState(null);
@@ -44,7 +49,7 @@ const SideMenu = ({ rankingArray, setRankingArray }) => {
           />
         </div>
         <div className="flex flex-col items-center">
-          <p className="text-primary font-bold text-xl">Crime {crimeRanking}</p>
+          <p className="text-primary font-bold text-xl">Crime</p>
           <OptionButton
             options={[1, 2, 3, 4, 5]}
             setPressed={setCrimeRanking}
@@ -52,10 +57,17 @@ const SideMenu = ({ rankingArray, setRankingArray }) => {
         </div>
         <div className="flex flex-col items-center">
           <p className="text-primary font-bold text-xl">Input Budget</p>
-          <PriceTextBox setPriceValue={setPriceValue} />
+          <PriceTextBox
+            setPriceValue={setPriceValue}
+            setTryAgain={setTryAgain}
+          />
         </div>
       </div>
-      <Submit rankingArray={rankingArray} />
+      <Submit
+        rankingArray={rankingArray}
+        setFinalCityName={setFinalCityName}
+        setTryAgain={setTryAgain}
+      />
     </div>
   );
 };

@@ -26,8 +26,7 @@ const WisconsinMapMain = () => {
   ];
 
   return (
-    <div>
-      <div className="h-14 w-full" />
+    <div className="h-screen">
       <div className="h-screen w-screen">
         <ReactMapGL
           initialViewState={{
