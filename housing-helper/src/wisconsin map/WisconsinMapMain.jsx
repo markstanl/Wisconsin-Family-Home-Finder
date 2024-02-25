@@ -20,11 +20,6 @@ const WisconsinMapMain = () => {
     [-85.290764, 46.839153], // [maxLongitude, maxLatitude]
   ];
 
-  const generousMaxBounds = [
-    [-82.857848, 30], // [maxLongitude, maxLatitude]
-    [-97.677088, 60], // [minLongitude, minLatitude]
-  ];
-
   return (
     <div className="h-screen">
       <div className="h-full w-screen">
