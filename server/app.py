@@ -2,9 +2,6 @@ from flask import Flask, jsonify, request
 import pandas as pd
 import csv
 import cities
-def getCity(city):
-    return cities(city, "All Hail Bucky")
-
 
 app = Flask(__name__)
 
@@ -14,8 +11,6 @@ cityList = []
 qualityNormalized = []
 safetyNormalized = []
 employabilityNormalized = []
-
-
 
 
 def load_data():
@@ -81,7 +76,10 @@ def makeArrays():
         cityList.append(get_city_name(city))
 
 
-@app.route("/filter_data", methods=["GET"])
+def get_city(city):
+    return city(city, "All Hail Bucky")
+
+@app.route("/filter_data", methods=["POST"])
 def filter():
     load_data()
     makeArrays()
