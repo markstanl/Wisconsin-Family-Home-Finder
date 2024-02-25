@@ -1,105 +1,74 @@
 from flask import Flask, jsonify, request
+import pandas as pd
 import csv
 
 app = Flask(__name__)
 
-# total set
-cities = []
-populations = []
-prices = []
-
+cityList = []
 qualityNormalized = []
 safetyNormalized = []
 employabilityNormalized = []
 
-# modified set
-modifiedSafety = []
-modifiedQuality = []
-modifiedEmployability = []
+def load_data():
+    cities = {}
 
-rating = []
+    f = open('../city_education_crime_employment_homeprice.csv', encoding='utf-8')
+    raw_data = list(csv.reader(f))
+    f.close()
 
-file_path = "./city_education_crime_employment_homeprice.csv"
+    header = raw_data[0]
+    header.pop(0)
+    raw_data = raw_data[1:]
 
-def read_csv(file_path):
-    with open(file_path, mode='r') as file:
-        csv_reader = csv.DictReader(file)
-        next(csv_reader)
-        for column in csv_reader:
-            cities.append(column[0])
-            populations.append(column[1])
-            qualityNormalized.append(column[2])
-            safetyNormalized.append(column[3])
-            employabilityNormalized.append(column[4])
-            prices.append(column[5])
+    for data in raw_data:
+        city_name = data[0]
+        data.pop(0)
+        value = {}
+        for i in range(len(header)):
+            value[header[i]] = data[i]
+        for stat in value:
+            if stat in ['population', 'average_education_index', 'crime_index', 'sixteen_plus_employed_percentage',
+                        "house_median_value", 'edu_index_norm', 'employed_percentage_norm']:
+                value[stat] = int(value[stat])
+        cities[city_name] = value
 
-    return cities, populations, qualityNormalized, safetyNormalized, employabilityNormalized, prices
-
-# API endpoint to get the arrays
-@app.route("/area_data", methods=["GET"])
-def get_area_data():
-    data = {
-        "cities": cities,
-        "populations": populations,
-        "qualityNormalized": qualityNormalized,
-        "safetyNormalized": safetyNormalized,
-        "employabilityNormalized": employabilityNormalized,
-        "prices": prices
-    }
-    return jsonify(data)
+    for city_name in cities:
+        city = cities[city_name]
+        qualityNormalized.append(city["average_education_index"])
+        safetyNormalized.append(city["crime_index"])
+        employabilityNormalized.append(city["sixteen_plus_employed_percentage"])
+        cityList.append(city)
 
 
 @app.route("/filter_data", methods=["POST"])
 def filter():
-    global modifiedQuality, modifiedSafety, modifiedEmployability
+
+    global cityList, qualityNormalized, safetyNormalized, employabilityNormalized
+
     user_ratings = request.json
     user_employability = user_ratings.get("user_employability")
     user_safety = user_ratings.get("user_safety")
     user_quality = user_ratings.get("user_quality")
-    # 3 rating values
+    user_budget = user_ratings.get("user_budget")
 
-    if user_quality == 4:
-        modifiedQuality = [element * 1 for element in qualityNormalized]
-    elif user_quality == 3:
-        modifiedQuality = [element * 0.75 for element in qualityNormalized]
-    elif user_quality == 2:
-        modifiedQuality = [element * 0.50 for element in qualityNormalized]
-    elif user_quality == 1:
-        modifiedQuality = [element * 0.25 for element in qualityNormalized]
+    # Filter cities based on user budget
+    filtered_cities = [city for city in cityList if city["price"] <= user_budget]
 
-    if user_quality == 4:
-        modifiedSafety = [element * 1 for element in safetyNormalized]
-    elif user_safety == 3:
-        modifiedSafety = [element * 0.75 for element in safetyNormalized]
-    elif user_safety == 2:
-        modifiedSafety = [element * 0.5 for element in safetyNormalized]
-    elif user_safety == 1:
-        modifiedSafety = [element * 0.25 for element in safetyNormalized]
+    modified_quality = [q * user_quality for q in qualityNormalized]
+    modified_safety = [s * user_safety for s in safetyNormalized]
+    modified_employability = [e * user_employability for e in employabilityNormalized]
 
-    if user_employability == 4:
-        modifiedEmployability = [element * 1 for element in employabilityNormalized]
-    elif user_employability == 3:
-        modifiedEmployability = [element * 0.75 for element in employabilityNormalized]
-    elif user_employability == 2:
-        modifiedEmployability = [element * 0.5 for element in employabilityNormalized]
-    elif user_employability == 1:
-        modifiedEmployability = [element * 0.25 for element in employabilityNormalized]
+    # Combine modified ratings
+    added_rating = [q + s + e for q, s, e in zip(modified_quality, modified_safety, modified_employability)]
 
-    # these ratings are in correct indices
-    added_rating = modifiedQuality + modifiedSafety + modifiedEmployability
+    # Sort cities based on modified ratings
+    sorted_cities = [city for _, city in sorted(zip(added_rating, filtered_cities), reverse=True)]
 
-    sorted_data = sorted(added_rating, reverse=True)
+    return jsonify(sorted_cities)
 
-    return jsonify(sorted_data)
 
-@app.route("/handle_budget", methods=["GET"])
-def handle_budget():
-    budget = request.args.get('budget', type=int)
-    filtered_cities = [cities[i] for i in range(len(prices)) if prices[i] <= budget]
-
-    return jsonify({"filtered_cities": filtered_cities})
 
 
 if __name__ == "__main__":
-    read_csv(file_path)
+    load_data()
     app.run(debug=True, port=5000)
