@@ -15,10 +15,10 @@ Wauwatosa,43.0616,-88.0347
 Madison,43.0822,-89.393
 Cedarburg,43.299,-87.9887
 Verona,42.9892,-89.5383
-Mcfarland,NA,NA
+Mcfarland,43.0203,-89.2828
 Waunakee,43.1829,-89.4447
 Delafield,43.072,-88.3913
-Pewaukee,NA,NA
+Pewaukee,43.056833106,-88.242999028
 Glendale,43.1287,-87.9277
 Thiensville,43.2361,-87.9785
 Hudson,44.9639,-92.7312
@@ -31,7 +31,7 @@ River Falls,44.8609,-92.6247
 Fitchburg,42.9859,-89.4255
 Grafton,43.3204,-87.948
 Brown Deer,43.1743,-87.975
-Pewaukee village,NA,NA
+Pewaukee village,43.076166362,-88.25166566
 Greendale,42.9371,-88.0018
 New Berlin,42.9726,-88.1291
 Oconomowoc,43.0996,-88.4948
@@ -69,7 +69,7 @@ Columbus,43.3354,-89.03
 Lodi,43.3154,-89.5367
 Appleton,44.278,-88.3892
 Holmen,43.9706,-91.2654
-Saint Croix Falls,NA,NA
+Saint Croix Falls,45.41,-92.6266
 Fall River,43.3856,-89.0455
 Mineral Point,42.8632,-90.1814
 Oak Creek,42.8803,-87.9009
@@ -113,7 +113,7 @@ Twin Lakes,42.519,-88.2484
 Fall Creek,44.7639,-91.2783
 Cleveland,43.9177,-87.7469
 Hartford,43.3223,-88.3784
-Richland Center,NA,NA
+Richland Center,43.335998656,-90.38416513
 Slinger,43.3317,-88.2798
 Sheboygan Falls,43.729,-87.8266
 Lancaster,42.8473,-90.7065
@@ -124,10 +124,10 @@ Lake Delton,43.5932,-89.7841
 Burlington,42.6744,-88.2721
 Wausau,44.962,-89.6459
 Osceola,45.3193,-92.6936
-Silver Lake,NA,NA
+Silver Lake,44.05526,-89.22623
 Osseo,44.5795,-91.212
 Jackson,43.3233,-88.1666
-Saint Francis,NA,NA
+Saint Francis,42.9716,-87.873
 Janesville,42.6854,-89.0135
 Hazel Green,42.5341,-90.4361
 Menasha,44.2125,-88.4271
@@ -137,7 +137,7 @@ Oshkosh,44.0227,-88.5619
 Watertown,43.1893,-88.7285
 Mosinee,44.7874,-89.6839
 Edgerton,42.8385,-89.0699
-Fond Du Lac,NA,NA
+Fond Du Lac,43.7718,-88.4397
 Chippewa Falls,44.9358,-91.3902
 Cumberland,45.5358,-92.0291
 Westby,43.653,-90.8584
@@ -173,7 +173,7 @@ Baraboo,43.4695,-89.7376
 Amery,45.3045,-92.3635
 Rice Lake,45.4864,-91.7447
 Two Rivers,44.1565,-87.5824
-Marathon,NA,NA
+Marathon,44.92416297,-89.83749665
 Marinette,45.0871,-87.6336
 Black River Falls,44.2981,-90.842
 Cudahy,42.9467,-87.8641
@@ -182,7 +182,7 @@ Waupaca,44.3506,-89.0719
 Reedsburg,43.5348,-89.9965
 Grantsburg,45.7813,-92.6836
 Brillion,44.1758,-88.0707
-Prairie Du Chien,NA,NA
+Prairie Du Chien,43.0429,-91.137200000000007
 Hurley,46.4462,-90.1983
 Dane,43.2497,-89.4993
 Medford,45.1365,-90.3436
@@ -247,7 +247,7 @@ Athens,45.0349,-90.0792
 Juneau,43.4053,-88.7041
 Berlin,43.9704,-88.9504
 Clintonville,44.6222,-88.7513
-North Fond Du Lac,NA,NA
+North Fond Du Lac,43.8107,-88.486
 Beloit,42.523,-89.0184
 Elroy,43.7419,-90.2704
 Markesan,43.7098,-88.9907

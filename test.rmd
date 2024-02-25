@@ -12,6 +12,7 @@ library(kableExtra)
 library(broman)
 library(scales)
 library(modelr)
+library(jsonlite)
 theme_set(theme_minimal())
 ```
 
@@ -83,7 +84,46 @@ ggplot(final, aes(x = crime_index)) +
 ```{r}
 final$'' = 1:264
 final = final[,c(9, 1, 2, 3, 4, 5, 6, 7, 8)]
-write_csv(final, "city_education_crime_employment_homeprice.csv")
+#write_csv(final, "city_education_crime_employment_homeprice.csv")
 print(final$city)
 write(final$city, "city_list.txt")
+```
+
+```{r}
+cities = as.data.frame(final$city)
+cities = rename(cities, "city" = "final$city")
+us_cities_all = read_csv("uscities.csv")
+cities_wi = us_cities_all %>% 
+  filter(state_id == "WI")
+city_lat_lng = left_join(cities, cities_wi, "city")
+city_lat_lng = city_lat_lng %>% 
+  select('city', 'lat', 'lng') %>% 
+  rename('latitude' = 'lat', 'longitude' = 'lng')
+city_lat_lng[17,2] = 43.0203
+city_lat_lng[17,3] = -89.2828
+city_lat_lng[71,2] = 45.4100
+city_lat_lng[71,3] = -92.6266
+city_lat_lng[115,2] = 43.335998656
+city_lat_lng[115,3] = -90.38416513
+city_lat_lng[126,2] = 44.05526
+city_lat_lng[126,3] = -89.22623
+city_lat_lng[129,2] = 42.9716
+city_lat_lng[129,3] = -87.8730
+city_lat_lng[139,2] = 43.7718
+city_lat_lng[139,3] = -88.4397
+city_lat_lng[175,2] = 44.92416297
+city_lat_lng[175,3] = -89.83749665
+city_lat_lng[184,2] = 43.0429
+city_lat_lng[184,3] = -91.1372
+city_lat_lng[249,2] = 43.8107
+city_lat_lng[249,3] = -88.4860
+city_lat_lng[20,2] = 43.056833106
+city_lat_lng[20,3] = -88.242999028
+city_lat_lng[33,2] = 43.076166362
+city_lat_lng[33,3] = -88.25166566
+
+
+write_csv(city_lat_lng, "city_lat_lng.csv")
+json_data = toJSON(city_lat_lng)
+writeLines(json_data, "city_lat_lng.json")
 ```
