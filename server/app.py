@@ -76,7 +76,7 @@ def makeArrays():
         cityList.append(get_city_name(city))
 
 
-@app.route("/filter_data", methods=["POST"])
+@app.route("/filter_data", methods=["GET"])
 def filter():
     load_data()
     makeArrays()

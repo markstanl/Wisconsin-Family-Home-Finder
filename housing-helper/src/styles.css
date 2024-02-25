@@ -17,12 +17,26 @@
   @apply bg-gradient-to-r from-primary to-accent inline-block text-transparent bg-clip-text;
 }
 
+.secondary-primary-gradient{
+  @apply bg-gradient-to-r from-secondary to-primary;
+}
+
 h1{
   @apply text-4xl font-bold;
 }
 
 .button-container{
   @apply  border-2 border-accent rounded-lg flex flex-row justify-center bg-accent cursor-pointer;
+  
+}
+
+.submit-button-container{
+  @apply  border-2  rounded-lg flex flex-row justify-center cursor-pointer;
+}
+
+
+.reset-button-container{
+  @apply  border-2 border-secondary rounded-lg flex flex-row justify-center items-center bg-text cursor-pointer text-3xl text-background font-bold;
 }
 
 .input-container{

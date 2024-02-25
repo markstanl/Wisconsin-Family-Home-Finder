@@ -16,19 +16,13 @@ const WisconsinMapMain = () => {
 
   // Define maxBounds with correct coordinates
   const maxBounds = [
-    [-93.38191, 46.899241], // [minLongitude, minLatitude]
-    [-85.861953, 42.156888], // [maxLongitude, maxLatitude]
-  ];
-
-  const generousMaxBounds = [
-    [-97.677088, 60], // [minLongitude, minLatitude]
-    [-82.857848, 30], // [maxLongitude, maxLatitude]
+    [-95.294851, 42.303316], // [minLongitude, minLatitude]
+    [-85.290764, 46.839153], // [maxLongitude, maxLatitude]
   ];
 
   return (
-    <div>
-      <div className="h-14 w-full" />
-      <div className="h-screen w-screen">
+    <div className="h-screen">
+      <div className="h-full w-screen">
         <ReactMapGL
           initialViewState={{
             latitude: 43.784439,
@@ -42,7 +36,7 @@ const WisconsinMapMain = () => {
             "pk.eyJ1IjoiaWduYXNkIiwiYSI6ImNsdDBkb3dxczB4em4yb21uZ2hmdDZ3aXoifQ.pbbOUb_r8sNLbwrJPNmlkw"
           }
           onViewportChange={(nextViewport) => setViewport(nextViewport)}
-          maxBounds={generousMaxBounds}
+          maxBounds={maxBounds}
         ></ReactMapGL>
       </div>
     </div>
