@@ -8,7 +8,7 @@ frontend:
     build:
       commands: npm run build
   artifacts:
-    baseDirectory: housing-helper/dist
+    baseDirectory: housing-helper
     files:
       - '**/*'
   cache:
