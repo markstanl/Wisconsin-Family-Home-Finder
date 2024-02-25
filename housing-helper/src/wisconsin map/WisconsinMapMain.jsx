@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { NavigationControl } from "react-map-gl";
+import ReactMapGL from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import MarkerPopup from "./MarkerPopup";
+import city_lat_lng from "./city_lat_lng.json";
 
-const WisconsinMapMain = () => {
+const WisconsinMapMain = ({ finalCity }) => {
+  const [cityLatLong, setCityLatLong] = useState(null);
+
+  async function getLatLong() {
+    for (let city of city_lat_lng) {
+      if (city.name === finalCity.city) {
+        setCityLatLong([city.latitude, city.longitude]);
+        break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    getLatLong();
+  }, [finalCity]);
+
   // Add the locations, see if can add hover effect
   // Limit the map around wisconsin,
   // Change map theme to be less ugly
@@ -37,7 +54,15 @@ const WisconsinMapMain = () => {
           }
           onViewportChange={(nextViewport) => setViewport(nextViewport)}
           maxBounds={maxBounds}
-        ></ReactMapGL>
+        >
+          {finalCity && (
+            <MarkerPopup
+              lat={cityLatLong[0]}
+              long={cityLatLong[1]}
+              finalCity={finalCity}
+            />
+          )}
+        </ReactMapGL>
       </div>
     </div>
   );

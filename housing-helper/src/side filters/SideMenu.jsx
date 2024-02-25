@@ -6,7 +6,7 @@ import PriceTextBox from "./PriceTextBox";
 const SideMenu = ({
   rankingArray,
   setRankingArray,
-  setFinalCityName,
+  setFinalCity,
   setTryAgain,
 }) => {
   const [educationRanking, setEducationRanking] = useState(null);
@@ -65,7 +65,7 @@ const SideMenu = ({
       </div>
       <Submit
         rankingArray={rankingArray}
-        setFinalCityName={setFinalCityName}
+        setFinalCity={setFinalCity}
         setTryAgain={setTryAgain}
       />
     </div>
